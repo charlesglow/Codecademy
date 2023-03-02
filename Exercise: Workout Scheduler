@@ -1,0 +1,58 @@
+// Write your code below 💪
+
+struct Exercise {
+  //Collection of exercises in this struct
+  //For each exercise we want the following variables:
+    var name:String
+    var muscleGroups:[String]
+    var reps: Int
+    var sets: Int
+    var totalReps: Int
+
+  //We want to create many instances of the Exercise struct
+  init(name:String, muscleGroups:[String], reps:Int, sets:Int) {
+    self.name = name
+    self.muscleGroups = muscleGroups
+    self.reps = reps
+    self.sets = sets
+    self.totalReps = reps * sets
+}
+}
+var pushUp = Exercise(name:"Push Up", muscleGroups:["Chest", "Triceps", "Shoulder"], reps:10, sets:3)
+//print(pushUp.name)
+var sitUp = Exercise(name:"Sit Up", muscleGroups:["Abs"], reps:10, sets:3)
+//print(pushUp.name)
+var squat = Exercise(name:"Squat", muscleGroups:["Legs", "Butt", "Back"], reps:10, sets:3)
+//print(pushUp.name)
+
+struct Regimen {
+  var day:String
+  var exercises:[Exercise]
+init(_ day:String, _ exercises:[Exercise]){
+  self.day = day
+  self.exercises = exercises
+
+  //self.exercises is an array of Exercise instances.
+}
+func printExercisePlan() {
+  print("Today is \(day), our plan is to:")
+  for exercise in exercises {
+    print("Do \(exercise.sets) sets of \(exercise.reps) of \(exercise.name)")
+  }
+}
+mutating func addExercise(_ newEx:Exercise) {
+  exercises.append(newEx)
+  print("Now you have added \(newEx.name) to your \(day) regime!")
+}
+}
+var mondayRegime = Regimen("Monday", [pushUp, sitUp, squat])
+//print(mondayRegime)
+
+//print(mondayRegime.printExercisePlan())
+
+var tuesdayRegime = Regimen("Tuesday", [squat, sitUp])
+//print(tuesdayRegime)
+
+print(tuesdayRegime.exercises[0].name)
+tuesdayRegime.addExercise(squat)
+
